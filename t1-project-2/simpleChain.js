@@ -96,3 +96,7 @@ class Blockchain{
       }
     }
 }
+
+let blockchain = new Blockchain();
+blockchain.addBlock(new Block("test data 1"));
+console.log(blockchain.getBlock(1));
