@@ -6,23 +6,37 @@ const level = require('level');
 const chainDB = './chaindata';
 const db = level(chainDB);
 
+
 // Add data to levelDB with key/value pair
-function addLevelDBData(key,value){
-  db.put(key, value, function(err) {
-    if (err) return console.log('Block ' + key + ' submission failed', err);
+var addLevelDBData = function (key,value) {
+  return new Promise((resolve, reject) => {
+    db.put(key, value, function(err) {
+      if (err) {
+        console.log('Block ' + key + ' submission failed', err);
+        reject()
+      }
+    })
+    resolve('Added block #' + key)
   })
 }
 
 // Get data from levelDB with key
-function getLevelDBData(key){
-  db.get(key, function(err, value) {
-    if (err) return console.log('Not found!', err);
-    console.log('Value = ' + value);
+var getLevelDBData = function (key) {
+  return new Promise((resolve, reject) => {
+    db.get(key, function(err, value) {
+      if (err) {
+        reject('Not found!', err)
+      }
+      else {
+        console.log('Value = ' + value);
+        resolve(value)
+      }
+    })
   })
 }
 
 // Add data to levelDB with value
-function addDataToLevelDB(value) {
+var addDataToLevelDB = function (value) {
     let i = 0;
     db.createReadStream().on('data', function(data) {
           i++;
@@ -34,6 +48,29 @@ function addDataToLevelDB(value) {
         });
 }
 
+// Get block height from levelDB
+var getBlockHeight = function () {
+  return new Promise((resolve, reject) => {
+    let height = -1;
+    db.createReadStream()
+      .on('data', data => {
+        height++;
+      })
+      .on('error', err => {
+        reject(err);
+      })
+      .on('close', () => {
+        resolve(height);
+      })
+  })
+}
+
+module.exports = {
+  addLevelDBData: addLevelDBData,
+  getLevelDBData: getLevelDBData,
+  addDataToLevelDB: addDataToLevelDB,
+  getBlockHeight: getBlockHeight
+};
 /* ===== Testing ==============================================================|
 |  - Self-invoking function to add blocks to chain                             |
 |  - Learn more:                                                               |
@@ -45,10 +82,9 @@ function addDataToLevelDB(value) {
 |     ( new block every 10 minutes )                                           |
 |  ===========================================================================*/
 
-
-(function theLoop (i) {
-  setTimeout(function () {
-    addDataToLevelDB('Testing data');
-    if (--i) theLoop(i);
-  }, 100);
-})(10);
+// (function theLoop (i) {
+//   setTimeout(function () {
+//     addDataToLevelDB('Testing data');
+//     if (--i) theLoop(i);
+//   }, 100);
+// })(10);
