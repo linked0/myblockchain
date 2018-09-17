@@ -31,9 +31,10 @@ class Block{
 class Blockchain{
   constructor(){
     this.chain = []
+		this.errorLog = []	
     this.getBlockHeight()
       .then((height) => {
-        if (height == -1) {
+        if (height === -1) {
           this.addBlock(new Block("First block in the chain - Genesis block"));
         }
       })
@@ -78,7 +79,7 @@ class Blockchain{
     }
 
     // validate block
-    async validateBlock(blockHeight, errorLog){
+    async validateBlock(blockHeight){
       // get block object
       let block = await this.getBlock(blockHeight);
       // get block hash
@@ -90,31 +91,31 @@ class Blockchain{
       // Compare
       if (blockHash!==validBlockHash) {
         console.log('Block #'+blockHeight+' invalid hash:\n'+blockHash+'<>'+validBlockHash);
-        errorLog.push(blockHeight)
+        this.errorLog.push(blockHeight)
       }
     }
 
    // Validate blockchain
     async validateChain(){
-      let errorLog = [];
+      this.errorLog = [];
       let totalBlockHeight = await this.getBlockHeight()
-      for (var i = 0; i < totalBlockHeight; i++) {
+      for (let i = 0; i < totalBlockHeight; i++) {
         // validate block
-        this.validateBlock(i, errorLog)
+        this.validateBlock(i)
 
-        if (i == totalBlockHeight - 1) {
+        if (i === totalBlockHeight - 1) {
           // compare blocks hash link
           let block = await this.getBlock(i)
           let nextBlock = await this.getBlock(i+1)
           if (block.blockHash!==nextBlock.previousHash) {
-            errorLog.push(i);
+            this.errorLog.push(i);
           }
         }
       }
       
-      if (errorLog.length>0) {
-        console.log('Block errors = ' + errorLog.length);
-        console.log('Blocks: '+errorLog);
+      if (this.errorLog.length>0) {
+        console.log('Block errors = ' + this.errorLog.length);
+        console.log('Blocks: ' + this.errorLog);
       } else {
         console.log('No errors detected');
       }
@@ -151,3 +152,10 @@ function test() {
   )
 }
 
+function getBlockchain() {
+	return blockchain;
+}
+
+module.exports = {
+	getBlockchain: getBlockchain
+};

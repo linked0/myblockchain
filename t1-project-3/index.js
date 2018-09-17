@@ -1,7 +1,8 @@
 'use strict';
 
 const Hapi=require('hapi');
-#const SimpleChain=require('simpleChain')
+const Chain=require('./simpleChain')
+const blockchain = Chain.getBlockchain()
 
 // Create a server with a host and port
 const server=Hapi.server({
@@ -23,9 +24,10 @@ server.route({
 server.route({
 	method:'GET',
 	path:'/block/{height}',
-	handler:function(request, h) {
+	handler:async function(request, h) {
 		const height = request.params.height;
-		return 'get block:' + height;
+		const block = await blockchain.getBlock(height)	
+		return 'get block:' + JSON.stringify(block);
 	}
 });
 
