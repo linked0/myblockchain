@@ -1,11 +1,12 @@
 'use strict';
 
 const Hapi=require('hapi');
+#const SimpleChain=require('simpleChain')
 
 // Create a server with a host and port
 const server=Hapi.server({
     host:'localhost',
-    port:8000
+    port:8999
 });
 
 // Add the route
@@ -14,16 +15,17 @@ server.route({
     path:'/hello',
     handler:function(request,h) {
 
-        return'hello world';
+        return 'hello world';
     }
 });
 
 // Getting block route
 server.route({
 	method:'GET',
-	path:'/block',
+	path:'/block/{height}',
 	handler:function(request, h) {
-		return 'block api';
+		const height = request.params.height;
+		return 'get block:' + height;
 	}
 });
 
