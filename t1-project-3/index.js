@@ -10,16 +10,6 @@ const server=Hapi.server({
     port:8999
 });
 
-// Add the route
-server.route({
-    method:'GET',
-    path:'/hello',
-    handler:function(request,h) {
-
-        return 'hello world';
-    }
-});
-
 // Getting block route
 server.route({
 	method:'GET',
@@ -27,7 +17,25 @@ server.route({
 	handler:async function(request, h) {
 		const height = request.params.height;
 		const block = await blockchain.getBlock(height)	
-		return 'get block:' + JSON.stringify(block);
+		return JSON.stringify(block);
+	}
+});
+
+// Adding new block
+server.route({
+	method:'POST',
+	path:'/block',
+	handler:async function(request, h) {
+		if (request.payload == undefined) {
+			return 'There is no payload'
+		}
+		if (request.payload.body == undefined) {
+			return 'There is no body on the payload'
+		}
+		await blockchain.addBlock(new Chain.Block(request.payload.body))
+		const height = await blockchain.getBlockHeight()
+		const block = await blockchain.getBlock(height)
+		return JSON.stringify(block)
 	}
 });
 

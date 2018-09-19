@@ -14,7 +14,7 @@ const leveldb = require('./levelSandbox');
 |  Class with a constructor for block 			   |
 |  ===============================================*/
 
-class Block {
+class Block{
 	constructor(data){
      this.hash = "",
      this.height = 0,
@@ -126,13 +126,10 @@ let blockchain = new Blockchain();
 
 // Test for 
 (function theLoop (i) {
-  setTimeout(async function () {
-    let height = await blockchain.getBlockHeight()
-	console.log('height in theLoop:', height)
-    if (height === -1 || height instanceof Promise) {
-		theLoop(i);
-	}
-    else if (height === 0) {
+  setTimeout(function () {
+    let height = blockchain.getBlockHeight()
+    if (height == -1) theLoop(i);
+    else {
       test();
     }
   }, 100);
@@ -160,6 +157,5 @@ function getBlockchain() {
 }
 
 module.exports = {
-	getBlockchain: getBlockchain,
-	Block: Block
+	getBlockchain: getBlockchain
 };

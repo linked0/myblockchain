@@ -1,3 +1,10 @@
 t1-project-3/chaindata/*
 *.swp
 t1-project-3/node_modules/*
+node_modules/*
+t1-project-3/.tmp/*
+*.swo
+ud-bcnd/*
+t1-project-3-sails/.tmp/*
+t1-project-3-sails/node_modules/*
+.gitkeep
