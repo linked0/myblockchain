@@ -1,88 +1,59 @@
-# Project Title
+# RESTful Web API with Node.js Framework
 
-One Paragraph of project description goes here
+This project is to build a site having RESTful web APIs with Node.js framework that will interfaces with the private blockchain.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+The followings are prerequisites for running this application.
 
+* Node.js: You can install nodejs with [Installing Node.js via package manager](https://nodejs.org/ko/download/package-manager/)
+
+### Getting source files from the github
 ```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+git clone https://github.com/linked0/myblockchain.git
 ```
 
-And repeat
+### Running the application
+
+Use NPM to install project dependencies and run the application.
 
 ```
-until finished
+cd t1-project-3
+npm install
+node index.js
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Here are instructions for tesing the application.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+### GET Block Endpoint
 
 ```
-Give an example
+GET /block/:BLOCK_HEIGHT
+```
+Request example using curl
+```
+curl http://localhost:8999/block/10
+```
+Response example
+```
+{"hash":"4945e8ce8e05bde9ee67b8fde8c72276844c8f0c1615159ecf27b8d10dbd6646","height":10,"body":"Hyunjae","time":"1537362294","previousBlockHash":"353d0d9d7a1c8d2351a735a21c0a073db96afcf5f9891166311a578135e4fcd9"}
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+### POST Block Endpoint
 ```
-Give an example
+POST /block
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+Request example using curl
+```
+curl -X POST -H "Content-Type: application/json" -d '{"body": "New Test Block 27th September"}' http://localhost:8999/block
+```
+Response example
+```
+{"hash":"6e6d93240594aaa976afe5eee53592d81945fe9ab90f8e68019c25044d3fd1c5","height":42,"body":"New Test Block 27th September","time":"1538052971","previousBlockHash":"0507e3a617519326ebec72f7965dcdd2ec8d9c266c4b6454c7528e7943192c2d"}
+```
