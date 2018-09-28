@@ -12,6 +12,9 @@ The followings are prerequisites for running this application.
 
 * Node.js: You can install nodejs with [Installing Node.js via package manager](https://nodejs.org/ko/download/package-manager/)
 
+### Node.js RESTful framework
+- [Hapi.js](https://hapijs.com/)
+
 ### Getting source files from the github
 ```
 git clone https://github.com/linked0/myblockchain.git
@@ -38,7 +41,7 @@ GET /block/:BLOCK_HEIGHT
 ```
 Request example using curl
 ```
-curl http://localhost:8999/block/10
+curl http://localhost:8000/block/10
 ```
 Response example
 ```
@@ -51,7 +54,7 @@ POST /block
 ```
 Request example using curl
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"body": "New Test Block 27th September"}' http://localhost:8999/block
+curl -X POST -H "Content-Type: application/json" -d '{"body": "New Test Block 27th September"}' http://localhost:8000/block
 ```
 Response example
 ```
