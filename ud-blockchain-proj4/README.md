@@ -30,9 +30,27 @@ npm install
 node index.js
 ```
 
-## Running the tests
+## Endpoint Description
 
 Here are instructions for tesing the application.
+
+### 1. Blockchain ID validation request
+#### Method
+```
+POST
+```
+#### Endpoint
+```
+http://localhost:8000/requestValidation
+```
+#### Parameters
+```
+address: A bitcoin address
+```
+#### Request example using curl
+```
+curl -X POST -H 'Content-Type:application/json' -d '{"address":"hyunjae"}' http://localhost:8000/requestValidation
+```
 
 ### GET Block Endpoint
 

@@ -18,10 +18,11 @@ server.route({
 	path:'/requestValidation',
 	handler:async function(request, h) {
 		if (request.payload == undefined) {
-			return 'There is no payload'
+			return 'There is no payload\n'
 		}
+		console.log(request.payload)
 		if (request.payload.address == undefined) {
-			return 'There is no address on the payload'
+			return 'There is no address on the payload\n'
 		}
 		const addr = request.payload.address
 		return statNotary.requestValidation(addr)

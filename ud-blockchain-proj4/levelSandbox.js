@@ -3,9 +3,17 @@
 |  =============================================================*/
 
 const level = require('level');
-const chainDB = './chaindata';
-const db = level(chainDB);
+const starDB = './stardata';
+const db = level(starDB);
 
+// Request Validation
+var requestValidation = function (key) {
+  console.log('requestValidation on lavelSandbox')
+  return new Promise((resolve, reject) => {
+    console.log('Promise in requestValidtion on levelSandbox')
+    resolve('hello')
+  })
+}
 
 // Add data to levelDB with key/value pair
 var addLevelDBData = function (key,value) {
@@ -66,6 +74,7 @@ var getBlockHeight = function () {
 }
 
 module.exports = {
+  requestValidation: requestValidation,
   addLevelDBData: addLevelDBData,
   getLevelDBData: getLevelDBData,
   addDataToLevelDB: addDataToLevelDB,
