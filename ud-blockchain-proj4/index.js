@@ -3,11 +3,29 @@
 const Hapi=require('hapi');
 const Chain=require('./simpleChain')
 const blockchain = Chain.getBlockchain()
+const statNotary = require('./star-notary')
 
 // Create a server with a host and port
 const server=Hapi.server({
     host:'localhost',
     port:8000
+});
+
+
+// Criteria: Web API post endpoint validates request with JSON response
+server.route({
+	method:'POST',
+	path:'/requestValidation',
+	handler:async function(request, h) {
+		if (request.payload == undefined) {
+			return 'There is no payload'
+		}
+		if (request.payload.address == undefined) {
+			return 'There is no address on the payload'
+		}
+		const addr = request.payload.address
+		return statNotary.requestValidation(addr)
+	}
 });
 
 // Getting block route

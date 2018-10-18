@@ -1,16 +1,20 @@
 {
-  "name": "t1-project-3",
+  "name": "ud-blockchain-proj4",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is to build a site having RESTful web APIs with Node.js framework that will interfaces with the private blockchain.",
   "main": "index.js",
+  "dependencies": {
+    "bitcoinjs-lib": "^4.0.2",
+    "bitcoinjs-message": "^2.0.0",
+    "crypto-js": "^3.1.9-1",
+    "hapi": "^17.6.0",
+    "level": "^4.0.0",
+    "node": "^10.12.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "crypto-js": "^3.1.9-1",
-    "hapi": "^17.5.4",
-    "level": "^4.0.0"
-  }
+  "license": "ISC"
 }
