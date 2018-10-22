@@ -8,11 +8,40 @@ const db = level(starDB);
 
 // Request Validation
 var requestValidation = function (key) {
-  console.log('requestValidation on lavelSandbox')
+  console.log('requestValidation on lavelSandbox - key', key)
   return new Promise((resolve, reject) => {
     console.log('Promise in requestValidtion on levelSandbox')
-    resolve('hello')
+    db.get(key, function (error, value) {
+      if (value === undefined) {
+        console.log('Undefined error')
+        return reject(new Error('Not found'))
+      } else if (error) {
+        console.log('Unknown error')
+        return reject(error)
+      } else {
+        console.log('db.get succeeded - value: ', value)
+        resolve(value)
+      }
+    })
   })
+}
+
+// Save new address
+var saveNewAddress = function (key) {
+  console.log('saveNewAddress called')
+  const timestamp = Date.now()
+  const message = `${key}:${timestamp}:$starRegistry`
+  const validationWindow = 5 * 60
+
+  const data = {
+    address: key,
+    message: message,
+    requestTimeStamp: timestamp,
+    validationWindow: validationWindow
+  }
+
+  db.put(data.address, JSON.stringify(data))
+  return data
 }
 
 // Add data to levelDB with key/value pair
@@ -75,6 +104,7 @@ var getBlockHeight = function () {
 
 module.exports = {
   requestValidation: requestValidation,
+  saveNewAddress: saveNewAddress,
   addLevelDBData: addLevelDBData,
   getLevelDBData: getLevelDBData,
   addDataToLevelDB: addDataToLevelDB,

@@ -25,7 +25,9 @@ server.route({
 			return 'There is no address on the payload\n'
 		}
 		const addr = request.payload.address
-		return statNotary.requestValidation(addr)
+		const data = await statNotary.requestValidation(addr)
+		console.log('Return from starNotary.requestValidation:', data)
+		return JSON.stringify(data)
 	}
 });
 
