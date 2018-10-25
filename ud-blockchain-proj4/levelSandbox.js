@@ -29,19 +29,21 @@ var requestValidation = function (key) {
 // Save new address
 var saveNewAddress = function (key) {
   console.log('saveNewAddress called')
-  const timestamp = Date.now()
-  const message = `${key}:${timestamp}:$starRegistry`
-  const validationWindow = 5 * 60
+  return new Promise((resolve, reject) => {
+    const timestamp = Date.now()
+    const message = `${key}:${timestamp}:starRegistry`
+    const validationWindow = 5 * 60
 
-  const data = {
-    address: key,
-    message: message,
-    requestTimeStamp: timestamp,
-    validationWindow: validationWindow
-  }
-
-  db.put(data.address, JSON.stringify(data))
-  return data
+    const data = {
+      address: key,
+      message: message,
+      requestTimeStamp: timestamp,
+      validationWindow: validationWindow
+    }
+    console.log('before db.put')
+    db.put(data.address, JSON.stringify(data))
+    resolve(data)
+  })
 }
 
 // Add data to levelDB with key/value pair
@@ -110,20 +112,3 @@ module.exports = {
   addDataToLevelDB: addDataToLevelDB,
   getBlockHeight: getBlockHeight
 };
-/* ===== Testing ==============================================================|
-|  - Self-invoking function to add blocks to chain                             |
-|  - Learn more:                                                               |
-|   https://scottiestech.info/2014/07/01/javascript-fun-looping-with-a-delay/  |
-|                                                                              |
-|  * 100 Milliseconds loop = 36,000 blocks per hour                            |
-|     (13.89 hours for 500,000 blocks)                                         |
-|    Bitcoin blockchain adds 8640 blocks per day                               |
-|     ( new block every 10 minutes )                                           |
-|  ===========================================================================*/
-
-// (function theLoop (i) {
-//   setTimeout(function () {
-//     addDataToLevelDB('Testing data');
-//     if (--i) theLoop(i);
-//   }, 100);
-// })(10);

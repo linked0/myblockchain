@@ -15,17 +15,31 @@ async function requestValidation(addr) {
     console.log('requestValidation in star-notary - address:', addr)
     let result
     await leveldb.requestValidation(addr)
-      .then((value) => {
+      .then(async (value) => {
         console.log('requestValidation succeeded - value:', value)
         data = JSON.parse(value)
-        console.log('requestValidation succeeded - data:', data)
-        result = data
+        const timestamp = Date.now()
+        const timediff = (timestamp - data.requestTimeStamp)/1000
+        console.log('difference between timestamp & requestTimeStamp:', timediff)
+
+        if (timediff > 5 * 60) {
+            console.log('###### registering with new timestamp after expired')
+            await leveldb.saveNewAddress(addr)
+                .then((value) => {
+                    result = value
+                })
+        }
+        else {
+            result = data
+        }
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.log('Attempting new address')
-        const data = leveldb.saveNewAddress(addr)
-        data = JSON.parse(data)
-        result = data
+        await leveldb.saveNewAddress(addr)
+            .then((value) => {
+                console.log('Success of new address saving - value: ', value)
+                result = value
+            })
       })
     return result
 }
