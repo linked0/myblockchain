@@ -24,6 +24,9 @@ contract('StarNotary', accounts => {
         let starId = 1
         let starPrice = web3.toWei(.01, "ether")
 
+        console.log('user1:', user1)
+        console.log('user2:', user2)
+
         beforeEach(async function () {
             await this.contract.createStar('awesome star', starId, {from: user1})
         })

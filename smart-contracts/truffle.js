@@ -12,6 +12,10 @@
  *   },
  */
 
+var HDWalletProvider = require('truffle-hdwallet-provider');
+
+var mnemonic = 'there friend bicycle game swap flower make license nice allow relax gym';
+
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
@@ -20,6 +24,14 @@ module.exports = {
 			host: "localhost",
 			port: 8545,
 			network_id: "*",
-		}
+		},
+		rinkeby: {
+			provider: function() { 
+			  return new HDWalletProvider(mnemonic, 'rinkeby.infura.io/v3/c0cb6503f05b48c193ab754637c6e35c') 
+			},
+			network_id: 4,
+			gas: 4500000,
+			gasPrice: 10000000000,
+		  }
 	}
 };
