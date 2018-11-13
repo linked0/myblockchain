@@ -14,7 +14,7 @@
 
 var HDWalletProvider = require('truffle-hdwallet-provider');
 
-var mnemonic = 'there friend bicycle game swap flower make license nice allow relax gym';
+var mnemonic = 'fiber green muscle two credit spot arrive bridge keep friend flower hello';
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -27,7 +27,7 @@ module.exports = {
 		},
 		rinkeby: {
 			provider: function() { 
-			  return new HDWalletProvider(mnemonic, 'rinkeby.infura.io/v3/c0cb6503f05b48c193ab754637c6e35c') 
+			  return new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/b69005d74fb149bdb9350022160270e2') 
 			},
 			network_id: 4,
 			gas: 4500000,
