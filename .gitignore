@@ -1,3 +1,6 @@
+reference
+web3test/node_modules
+smart-contracts/node_modules
 t1-project-3/chaindata/*
 *.swp
 t1-project-3/node_modules/*

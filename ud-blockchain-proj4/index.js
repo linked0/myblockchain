@@ -1,7 +1,8 @@
 'use strict';
 
 const Hapi=require('hapi');
-const statNotary = require('./star-notary')
+const starNotary = require('./starNotary');
+const controller = starNotary.getController();
 
 // Create a server with a host and port
 const server=Hapi.server({
@@ -9,10 +10,9 @@ const server=Hapi.server({
     port:8000
 });
 
-
 // Criteria: Web API post endpoint validates request with JSON response
 server.route({
-	method:'POST',
+	method: 'POST',
 	path:'/requestValidation',
 	handler:async function(request, h) {
 		if (request.payload == undefined) {
@@ -23,8 +23,8 @@ server.route({
 			return 'There is no address on the payload\n'
 		}
 		const addr = request.payload.address
-		const data = await statNotary.requestValidation(addr)
-		console.log('Return from starNotary.requestValidation:', data)
+		const data = await controller.requestValidation(addr)
+		console.log('Return from controller.requestValidation:', data)
 		return JSON.stringify(data)
 	}
 });
