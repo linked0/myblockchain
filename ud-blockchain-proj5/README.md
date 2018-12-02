@@ -1,0 +1,19 @@
+# Udacity Decentralized Star Notary Projectr
+## contract txhash
+0xec69ddb41e487de2bb65f41ee1d1ab70b019021b9935b2a26864c8097141d872
+https://rinkeby.etherscan.io/tx/0xec69ddb41e487de2bb65f41ee1d1ab70b019021b9935b2a26864c8097141d872
+
+## contract address
+0xada59a351ef3a8a61b2cebc7739446e6add903b3
+https://rinkeby.etherscan.io/address/0xada59a351ef3a8a61b2cebc7739446e6add903b3
+
+## createStar txhash
+0x2aa1ae792d8e47e9b13cb7052d576b959dbf431a2f21314162605d394d408a15
+https://rinkeby.etherscan.io/tx/0x2aa1ae792d8e47e9b13cb7052d576b959dbf431a2f21314162605d394d408a15
+
+## tokenId
+1
+
+## putStarUpForSale txhash
+0xf9fc4a167de21bca04dce3ce3567932e843c64272efe3860a81e5b843f0bbfdc
+https://rinkeby.etherscan.io/tx/0xf9fc4a167de21bca04dce3ce3567932e843c64272efe3860a81e5b843f0bbfdc
