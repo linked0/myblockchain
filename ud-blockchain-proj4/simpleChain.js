@@ -54,6 +54,9 @@ class Blockchain{
       const prevBlock = await this.getBlock(newBlock.height - 1);
       newBlock.previousBlockHash = prevBlock.hash;
     }
+    // add decoded story
+    newBlock.body.star.storyDecoded = this.hex2ascii(newBlock.body.star.story);
+
     // Block hash with SHA256 using newBlock and converting to a string
     newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
     leveldb.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
@@ -68,17 +71,52 @@ class Blockchain{
       return height;
     }
 
-    // get block
+    // Get block by height
     async getBlock(blockHeight){
       // return object as a single string
       let block = '';
       await leveldb.getLevelDBData(blockHeight)
-        .then((value) => block = value)
+        .then((value) => {
+          block = value 
+          if (block.height != 0) {
+            block.body.star.storyDecoded = this.hex2ascii(block.body.star.story);
+          }
+        })
         .catch((err) => console.log('getBlock error:', err))
-      return JSON.parse(block);
+      return block;
     }
 
-    // validate block
+    // Get block by hash
+    async getBlockByHash(blockHash) {
+      // return object as a single string
+      let block = '';
+      await leveldb.getLevelDBDataByHash(blockHash)
+        .then((value) => {
+          block = value
+          block.body.star.storyDecoded = this.hex2ascii(block.body.star.story);
+        })
+        .catch((err) => console.log('getBlock error:', err))
+      return block;
+    }
+
+    // Get block by Address
+    async getBlockByAddress(addr) {
+      // return object as a single string
+      let blocks = [];
+      await leveldb.getLevelDBDataByAddress(addr)
+        .then((value) => {
+          blocks = value
+          for (var i in blocks) {
+            var block = blocks[i]
+            //console.log('getBlockByAddress: ', block)
+            block.body.star.storyDecoded = this.hex2ascii(block.body.star.story);
+          }
+        })
+        .catch((err) => console.log('getBlock error:', err))
+      return blocks;
+    }
+
+    // Validate block
     async validateBlock(blockHeight){
       // get block object
       let block = await this.getBlock(blockHeight);
@@ -120,40 +158,18 @@ class Blockchain{
         console.log('No errors detected');
       }
     }
+
+    // Convert Hex to ASCII
+    hex2ascii(hexx) {
+      var hex = hexx.toString();//force conversion
+      var str = '';
+      for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+          str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+      return str;
+    } 
 }
 
 let blockchain = new Blockchain();
-
-// Test for 
-(function theLoop (i) {
-  setTimeout(async function () {
-    let height = await blockchain.getBlockHeight()
-	console.log('height in theLoop:', height)
-    if (height === -1 || height instanceof Promise) {
-		theLoop(i);
-	}
-    else if (height === 0) {
-      test();
-    }
-  }, 100);
-})(10);
-
-function test() {
-  blockchain.addBlock(new Block("test data " + 1))
-    .then(() => blockchain.addBlock(new Block("test data " + 2))
-    .then(() => blockchain.addBlock(new Block("test data " + 3)))
-    .then(() => blockchain.addBlock(new Block("test data " + 4)))
-    .then(() => blockchain.addBlock(new Block("test data " + 5)))
-    .then(() => blockchain.addBlock(new Block("test data " + 6)))
-    .then(() => blockchain.addBlock(new Block("test data " + 7)))
-    .then(() => blockchain.addBlock(new Block("test data " + 8)))
-    .then(() => blockchain.addBlock(new Block("test data " + 9)))
-    .then(() => {
-        console.log('\nvalidate chain')
-        blockchain.validateChain();
-      })
-  )
-}
 
 function getBlockchain() {
 	return blockchain;

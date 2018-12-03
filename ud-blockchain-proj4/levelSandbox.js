@@ -68,8 +68,45 @@ var getLevelDBData = function (key) {
       }
       else {
         console.log('Value = ' + value);
-        resolve(value)
+        resolve(JSON.parse(value))
       }
+    })
+  })
+}
+
+
+var getLevelDBDataByHash = function(blockHash) {
+  let block
+  
+  return new Promise((resolve, reject) => {
+    db.createReadStream().on('data', (data) => {    
+      block = JSON.parse(data.value) 
+      if (block.hash === blockHash) {
+        console.log('getLevelDBDataByHash: ', block)
+        return resolve(block)
+      }
+    }).on('error', (error) => {
+      return reject(error)
+    }).on('close', () => {
+      return reject('Not found')
+    })
+  })
+}
+
+var getLevelDBDataByAddress = function(address) {
+  const blocks = []
+  let block
+
+  return new Promise((resolve, reject) => {
+    db.createReadStream().on('data', (data) => {
+      block = JSON.parse(data.value)
+      if (block.body.address === address) {
+        blocks.push(block)
+      }
+    }).on('error', (error) => {
+      return reject(error)
+    }).on('close', () => {
+      return resolve(blocks)
     })
   })
 }
@@ -108,5 +145,7 @@ module.exports = {
   addLevelDBData: addLevelDBData,
   getLevelDBData: getLevelDBData,
   addDataToLevelDB: addDataToLevelDB,
-  getBlockHeight: getBlockHeight
+  getBlockHeight: getBlockHeight,
+  getLevelDBDataByHash: getLevelDBDataByHash,
+  getLevelDBDataByAddress: getLevelDBDataByAddress
 };

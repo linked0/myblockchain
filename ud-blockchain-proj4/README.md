@@ -34,14 +34,14 @@ node index.js
 
 Here are instructions for tesing the application.
 
-### 1. Blockchain ID validation request
-#### Method
-```
-POST
-```
+### Address Validation Request
 #### Endpoint
 ```
 http://localhost:8000/requestValidation
+```
+#### Method
+```
+POST
 ```
 #### Parameters
 ```
@@ -49,32 +49,109 @@ address: A bitcoin address
 ```
 #### Request example using curl
 ```
-curl -X POST -H 'Content-Type:application/json' -d '{"address":"hyunjae"}' http://localhost:8000/requestValidation
+curl -X POST http://localhost:8000/requestValidation \
+    -H 'Content-Type:application/json' \
+    -d '{"address":"1PXFZA9BSvGf244bPEhc1NWpezPtJejtGP"}'
 ```
 
-### GET Block Endpoint
 
+### Message Validation
+
+#### Endpoint
 ```
-GET /block/:BLOCK_HEIGHT
+http://localhost:8000//message-signature/validate
 ```
-Request example using curl
+#### Method
 ```
-curl http://localhost:8000/block/10
+POST
 ```
-Response example
+#### Parameters
 ```
-{"hash":"4945e8ce8e05bde9ee67b8fde8c72276844c8f0c1615159ecf27b8d10dbd6646","height":10,"body":"Hyunjae","time":"1537362294","previousBlockHash":"353d0d9d7a1c8d2351a735a21c0a073db96afcf5f9891166311a578135e4fcd9"}
+address: A bitcoin address
+signature: A signed message by the electrum wallet
+```
+#### Request example using curl
+```
+curl -X POST http://localhost:8000/message-signature/validate \
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache' \
+    -d '{"address":"1PXFZA9BSvGf244bPEhc1NWpezPtJejtGP", "signature":"H57n5GinMvrhnVj1f+7LgS42+7lm6do8r0acSLMmirQoKIZmMO9ScQDk5hrRw7E18w9tO+qgLQJ0E9DWIo9ZKew="}'
 ```
 
-### POST Block Endpoint
+### Block
+
+#### Endpoint
 ```
-POST /block
+http://localhost:8000/block
 ```
-Request example using curl
+#### Method
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"body": "New Test Block 27th September"}' http://localhost:8000/block
+POST
 ```
-Response example
+#### Parameters
 ```
-{"hash":"6e6d93240594aaa976afe5eee53592d81945fe9ab90f8e68019c25044d3fd1c5","height":42,"body":"New Test Block 27th September","time":"1538052971","previousBlockHash":"0507e3a617519326ebec72f7965dcdd2ec8d9c266c4b6454c7528e7943192c2d"}
+address: A bitcoin address
+star: Containing dec, ra and story (max 500 bytes)
 ```
+#### Request example using curl
+```
+curl -X POST http://localhost:8000/block \
+    -H 'Content-Type: application/json' \
+    -d '{"address": "1PXFZA9BSvGf244bPEhc1NWpezPtJejtGP", "star": {"ra": "16h 29m 1.0s", "dec": "-26° 29'\'' 24.9", "story": "This my star"}}'
+```
+
+### Star Block by Hash
+
+#### Endpoint
+```
+http://localhost:8000/stars/hash:[HASH]
+```
+#### Method
+```
+GET
+```
+#### Parameters
+```
+hash: The hash of the block to be requested
+```
+#### Request example using curl
+```
+curl -X GET http://localhost:8000/stars/hash:f3ac7a034d6169eab241e5c9e7bfc8293c98484493bfb577c5b125963a3b804a
+```
+
+### Star Block by Address
+
+#### Endpoint
+```
+http://localhost:8000/stars/address:[ADDRESS]
+```
+#### Method
+```
+GET
+```
+#### Parameters
+```
+hash: The address of the block to be requested
+```
+#### Request example using curl
+```
+curl -X GET http://localhost:8000/stars/address:1PXFZA9BSvGf244bPEhc1NWpezPtJejtGP
+```
+
+### Star Block by Height
+
+#### Endpoint
+```
+http://localhost:8000/block/[HEIGHT]
+```
+#### Method
+```
+GET
+```
+#### Parameters
+```
+height: The height of the block to be requested
+```
+#### Request example using curl
+```
+curl -X GET http://localhost:8000/block/1
