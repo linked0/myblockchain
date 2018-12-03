@@ -54,9 +54,10 @@ class Blockchain{
       const prevBlock = await this.getBlock(newBlock.height - 1);
       newBlock.previousBlockHash = prevBlock.hash;
     }
-    // add decoded story
-    newBlock.body.star.storyDecoded = this.hex2ascii(newBlock.body.star.story);
-
+    // add decoded story except Genesis Block
+    if (newBlock.height != 0) {
+      newBlock.body.star.storyDecoded = this.hex2ascii(newBlock.body.star.story);
+    }
     // Block hash with SHA256 using newBlock and converting to a string
     newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
     leveldb.addLevelDBData(newBlock.height, JSON.stringify(newBlock))

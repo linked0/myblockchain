@@ -25,7 +25,7 @@ git clone https://github.com/linked0/myblockchain.git
 Use NPM to install project dependencies and run the application.
 
 ```
-cd t1-project-3
+ud-blockchain-proj4
 npm install
 node index.js
 ```

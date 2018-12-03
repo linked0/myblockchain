@@ -105,6 +105,9 @@ class StarNotary {
         console.log(`addrress:${addr}`)
         console.log(`star:${star}`)
 
+        // limited to 250 words
+        star.story = star.story.substring(0, 250)
+
         let body = {
             "address": addr,
             "star": {
