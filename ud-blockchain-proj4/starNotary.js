@@ -105,8 +105,31 @@ class StarNotary {
         console.log(`addrress:${addr}`)
         console.log(`star:${star}`)
 
+        // valid check
+        let data = this.mempoolValid[addr]
+        if (data == undefined || data.status.messageSignature == false) {
+            let error = {
+                "error": "Not authorized"
+            }
+            return error
+        }
+
+        // check ascii characters for star story
+        if (!this.isASCII(star.story)) {
+            let error = {
+                "error": "Star story contains non-ascii characters"
+            }
+            return error
+        }
+
         // limited to 250 words
-        star.story = star.story.substring(0, 250)
+        console.log('star story length: ', star.story.length)
+        if (star.story.length > 500) {
+            let error = {
+                "error": "Star story exceeds 500 bytes"
+            }
+            return error
+        }
 
         let body = {
             "address": addr,
@@ -120,6 +143,9 @@ class StarNotary {
         await blockchain.addBlock(new simpleChain.Block(body))
         const height = await blockchain.getBlockHeight()
         const block = await blockchain.getBlock(height)
+
+        this.removeValidationRequest(addr)
+        
         return block
     }
 
@@ -136,6 +162,10 @@ class StarNotary {
     async getBlock(height) {
         const block = await blockchain.getBlock(height)
         return block
+    }
+
+    isASCII(str) { 
+        return /^[\x00-\x7F]*$/.test(str); 
     }
 
     createValidationRequest(address) {

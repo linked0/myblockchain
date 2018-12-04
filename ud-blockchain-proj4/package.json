@@ -9,7 +9,9 @@
     "crypto-js": "^3.1.9-1",
     "hapi": "^17.6.0",
     "level": "^4.0.0",
-    "node": "^10.12.0"
+    "libxmljs": "^0.19.5",
+    "node": "^10.12.0",
+    "node-gyp": "^3.8.0"
   },
   "devDependencies": {},
   "scripts": {
