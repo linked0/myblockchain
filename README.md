@@ -1,6 +1,6 @@
 [//]: # (Image References)
-[bc-dev2]: ./bc-dev2.png "Blockchain Developer"
-![alt text][bc-dev2]
+[bc-dev]: ./bc-dev.png "Blockchain Developer"
+![alt text][bc-dev]
 
 # Udacity Blockchain Developer Nanodegree
 
