@@ -2,7 +2,6 @@
 [//]: # (Image References)
 [bc-dev]: ./bc-dev.png "Blockchain Developer"
 
-Choose which project you want to view:
 ![alt text][bc-dev]
 
 ## [Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
