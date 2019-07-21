@@ -31,6 +31,7 @@ In this project, you will build a Star Registry Service that allows users to cla
 ## [Project: ](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj4)
 
 
+
 ## [Project: Ethereum Decentralized Star Notary](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj5)
 For this project, you will create a DApp by adding functionality to your smart contract and deploy it on the public testnet. To do so, you'll employ your blockchain identity to secure digital assets on the Ethereum platform using a smart contract. You will get to practice your knowledge of the basics of Solidity.
 
