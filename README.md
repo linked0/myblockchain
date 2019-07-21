@@ -3,15 +3,6 @@ Choose which project you want to view:
 
 ## [Project: Managing you Blockchain identity](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
 
-### Overview
-Blockchains are a public record of value transactions that have taken place.
-
-These transactions often contain sensitive data such as personally identifiable information - so how does the blockchain secure against this information leaking into the wrong hands?
-
-In this project, you will get a chance to create your own blockchain “identity” and see how it is used to solve this issue.
-
-Your blockchain “identity” is an encrypted private-public key pair that generates wallet address which allows you to anonymously interact with information on the blockchain while still allowing others to verify your data. In this project, you will generate a private-public key pair with your wallet client, create a new wallet address, and learn how to use it to verify your identity.
-
 ### Build This Project
 To complete this project, follow the steps below. Then submit the required information outlined in the Prepare for Submission section.
 
@@ -35,6 +26,26 @@ Building Your Own Private Blockchain
 
 In this course, you learned all about blockchain and transaction data models as well as the differences between public and private blockchains. In this project you will put this knowledge to practice by creating your own private blockchain. However, this current model has some flaws in saving, persisting, and validating data. Your challenge in this project is to refactor your private blockchain to securely handle this information.
 
-[Project 4](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj4)
+## [Project 4](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj4)
+Build a Private Blockchain Notary Service!
+
+In this project, you will build a Star Registry Service that allows users to claim ownership of their favorite star in the night sky.
+
+### What will you need to do?
+#### Create a Blockchain dataset that allow you to store a Star (You should have this done in Projects 2 and 3)
+* The application will persist the data (using LevelDB).
+* The application will allow users to identify the Star data with the owner.
+
+#### Create a Mempool component
+* The mempool component will store temporal validation requests for 5 minutes (300 seconds).
+* The mempool component will store temporal valid requests for 30 minutes (1800 seconds).
+* The mempool component will manage the validation time window.
+
+#### Create a REST API that allows users to interact with the application.
+* The API will allow users to submit a validation request.
+* The API will allow users to validate the request.
+* The API will be able to encode and decode the star data.
+* The API will allow be able to submit the Star data.
+* The API will allow lookup of Stars by hash, wallet address, and height.
 
 [Project 5](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj5)
