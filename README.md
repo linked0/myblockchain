@@ -6,9 +6,6 @@ Building Your Own Private Blockchain
 
 In this course, you learned all about blockchain and transaction data models as well as the differences between public and private blockchains. In this project you will put this knowledge to practice by creating your own private blockchain. However, this current model has some flaws in saving, persisting, and validating data. Your challenge in this project is to refactor your private blockchain to securely handle this information.
 
-## [Project: ](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj3)
-
-
 ## [Project: Build Blockchain Notary Service](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj4)
 Build a Private Blockchain Notary Service!
 
