@@ -1,27 +1,13 @@
 # Udacity Blockchain Developer Nanodegree
 Choose which project you want to view:
 
-## [Project: Managing you Blockchain identity](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
-
-### Project Steps
-Step 1: Navigate to Electrum.org to download and install your bitcoin wallet.
-
-Step 2: Walk through the wallet interface and find your wallet address.
-
-Step 3: Navigate to our web application and use your wallet address to generate a message.
-
-Step 4: Use your wallet to sign the message.
-
-Step 5: Validate message signature with our web application.
-
-Step 6: Using your text editor, document your wallet address, message, and validated message signature.
-
-Step 7: Submit your project document
-
-## [Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj3)
+## [Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
 Building Your Own Private Blockchain
 
 In this course, you learned all about blockchain and transaction data models as well as the differences between public and private blockchains. In this project you will put this knowledge to practice by creating your own private blockchain. However, this current model has some flaws in saving, persisting, and validating data. Your challenge in this project is to refactor your private blockchain to securely handle this information.
+
+## [Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj3)
+
 
 ## [Project: Build Blockchain Notary Service](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj4)
 Build a Private Blockchain Notary Service!
