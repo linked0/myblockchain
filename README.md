@@ -1,8 +1,8 @@
-# Udacity Blockchain Developer Nanodegree
 [//]: # (Image References)
 [bc-dev]: ./bc-dev.png "Blockchain Developer"
-
 ![alt text][bc-dev]
+
+# Udacity Blockchain Developer Nanodegree
 
 ## [Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
 Building Your Own Private Blockchain
