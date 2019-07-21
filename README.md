@@ -30,7 +30,7 @@ Step 6: Using your text editor, document your wallet address, message, and valid
 
 Step 7: Submit your project document
 
-[Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj3)
+## [Project: Private Blockchain](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj3)
 Building Your Own Private Blockchain
 
 In this course, you learned all about blockchain and transaction data models as well as the differences between public and private blockchains. In this project you will put this knowledge to practice by creating your own private blockchain. However, this current model has some flaws in saving, persisting, and validating data. Your challenge in this project is to refactor your private blockchain to securely handle this information.
