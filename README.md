@@ -1,7 +1,8 @@
 # Udacity Blockchain Developer Nanodegree
 Choose which project you want to view:
 
-## [Project 2](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
+## [Project: Managing you Blockchain identity](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
+
 ### Overview
 Blockchains are a public record of value transactions that have taken place.
 
