@@ -48,4 +48,18 @@ In this project, you will build a Star Registry Service that allows users to cla
 * The API will allow be able to submit the Star data.
 * The API will allow lookup of Stars by hash, wallet address, and height.
 
-[Project 5](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj5)
+## [Project: Decentralized Star Notary](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj5)
+For this project, you will create a DApp by adding functionality to your smart contract and deploy it on the public testnet. To do so, you'll employ your blockchain identity to secure digital assets on the Ethereum platform using a smart contract. You will get to practice your knowledge of the basics of Solidity.
+
+Previously, you learned to create your own private blockchain web service. In this course, you migrated your private blockchain functionality to a smart contract and created your own ERC721 non-fungible token contract!
+
+### Part 1
+Write a smart contract with functions to support proof of existence (i.e. notarization)
+### Part 2	
+Test smart contract code coverage
+### Part 3
+Deploy smart contract on a public test network (Rinkeby)
+### Part 4
+Modify client code to interact with a smart contract
+### Optional
+Configure RESTful API endpoint to return a registered star
