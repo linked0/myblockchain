@@ -3,10 +3,7 @@ Choose which project you want to view:
 
 ## [Project: Managing you Blockchain identity](https://github.com/linked0/myblockchain/tree/master/ud-blockchain-proj2)
 
-### Build This Project
-To complete this project, follow the steps below. Then submit the required information outlined in the Prepare for Submission section.
-
-Project Steps
+### Project Steps
 Step 1: Navigate to Electrum.org to download and install your bitcoin wallet.
 
 Step 2: Walk through the wallet interface and find your wallet address.
