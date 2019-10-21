@@ -7,10 +7,8 @@ mod 5
 
 mod 1007 1
 mod 1007 2
-<<<<<<< HEAD
+
+mod 1008 1
 
 linked 1017
 
-=======
-mod 1008 1
->>>>>>> this is modification.\nby Jay
